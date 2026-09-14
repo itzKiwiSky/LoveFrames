@@ -1,12 +1,12 @@
 local example = {}
-example.title = "Button"
+example.title = "Canvas"
 example.category = "Object Demonstrations"
 
 function example.func(loveframes, centerarea)
     local rectX = 0
     local rectY = 0
-    local speedX = 2.5
-    local speedY = 2.5
+    local speedX = 20.5
+    local speedY = 20.5
 
     local frame = loveframes.Create("frame")
     frame:SetName("Canvas")
@@ -18,20 +18,23 @@ function example.func(loveframes, centerarea)
     canvas:SetParent(frame)
     canvas:SetSize(frame:GetWidth(), frame:GetHeight())
     canvas.DrawOnCanvas = function(obj)
-        love.graphics.rectangle("fill", x, y, 32, 32)
+        love.graphics.clear(0, 0, 0, 1)
+        love.graphics.setColor(0.4, 0.6, 1, 1)
+        love.graphics.rectangle("fill", rectX, rectX, 32, 32)
+        love.graphics.setColor(1, 1, 1, 1)
     end
 
     frame.Update = function(obj, elapsed)
-        if x + 32 >= frame:GetWidth() or x <= 0 then
+        if (rectX + 32 >= frame:GetWidth()) or (rectX <= 0) then
             speedX = -speedX
         end
 
-        if y + 32 >= frame:GetHeight() or y <= 0 then
+        if (rectY + 32 >= frame:GetHeight()) or (rectY <= 0) then
             speedY = -speedY
         end
 
-        x = x + speed
-        y = y + speed
+        rectX = rectX + speedX * elapsed
+        rectY = rectY + speedY * elapsed
     end
 end
 

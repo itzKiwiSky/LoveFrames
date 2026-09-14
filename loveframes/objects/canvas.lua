@@ -1,5 +1,5 @@
 return function(loveframes)
-    local canvasobject = loveframes.NewObject("canvas", "loveframes_object_base")
+    local canvasobject = loveframes.NewObject("canvas", "loveframes_object_base", true)
 
     function canvasobject:initialize()
         self.type = "canvas"
